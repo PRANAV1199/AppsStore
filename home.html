@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Home Page</title>
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <link rel="stylesheet" href="{{url_for('static',filename = 'css/style.css')}}" />
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" /> -->
+
+    <!-- adding bootstrap  -->
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+
+    <!-- styles for new header -->
+     <style>
+      body{
+        background-image: url('static/images/android-bg.jpg');
+      }
+      .smg-header-body {
+          background-color: #da2128;
+          color: #fff;
+          height: 42px;
+          position: fixed;
+          left: 0;
+          top: 0;
+          right: 0;
+          width: 100%;
+          z-index: 2;
+          clear: both;
+          float: none
+      }
+
+      .smg-header-body:after {
+          background: none;
+          border: none;
+          clear: both;
+          float: none;
+          content: '';
+          display: block;
+          font-size: 0;
+          height: 0;
+          line-height: 0;
+          width: 100%
+      }
+
+      .smg-header {
+          padding: 0 18px;
+          clear: both;
+          float: none
+      }
+
+      .smg-header:after {
+          background: none;
+          border: none;
+          clear: both;
+          float: none;
+          content: '';
+          display: block;
+          font-size: 0;
+          height: 0;
+          line-height: 0;
+          width: 100%
+      }
+
+      .smg-header .logo {
+          display: block;
+          float: left;
+          margin: 0;
+          padding-top: 6px
+      }
+
+      .smg-header .logo a {
+          display: block;
+          text-decoration: none
+      }
+
+      .smg-header .logo svg {
+          display: block
+      }
+
+      @media only screen and (min-width: 720px) {
+          .smg-header .logo svg {
+              display: none
+          }
+      }
+
+      .smg-header .logo svg+svg {
+          display: none
+      }
+
+      @media only screen and (min-width: 720px) {
+          .smg-header .logo svg+svg {
+              display: block
+          }
+      }
+
+      .smg-header .logo strong {
+          display: none
+      }
+
+      .smg-header .app-logo {
+          border-left: 1px solid #fff;
+          display: block;
+          float: left;
+          height: 30px;
+          margin: 0 0 0 5px;
+          padding: 3px 0 0 5px;
+          width: auto
+      }
+
+
+      .smg-header-body .options,
+      .smg-header-body .smg-menu {
+          display: none
+      }
+
+      .smg-header .app-logo:after {
+          background: none;
+          border: none;
+          clear: both;
+          float: none;
+          content: '';
+          display: block;
+          font-size: 0;
+          height: 0;
+          line-height: 0;
+          width: 100%
+      }
+
+      .smg-header .app-logo a {
+          color: #fff;
+          display: block;
+          text-decoration: none
+      }
+
+      .smg-header .app-logo svg {
+          float: left;
+          margin: 0 5px 0 0
+      }
+
+      .smg-header .app-logo svg path {
+          fill: #fff
+      }
+
+      .smg-header .app-logo strong {
+          color: #fff;
+          display: block;
+          float: left;
+          font-weight: normal;
+          font-size: 116.6667%;
+          line-height: 1.5
+      }
+
+      .smg-header .app-text-logo {
+          border-left: 1px solid #fff;
+          display: block;
+          float: left;
+          font-size: 150%;
+          height: 30px;
+          line-height: 1.2;
+          margin: 6px 0 0 12px;
+          padding: 3px 0 0 12px;
+          width: auto
+      }
+
+      .smg-header .app-text-logo:after {
+          background: none;
+          border: none;
+          clear: both;
+          float: none;
+          content: '';
+          display: block;
+          font-size: 0;
+          height: 0;
+          line-height: 0;
+          width: 100%
+      }
+
+      .smg-header .app-text-logo a {
+          color: #fff;
+          display: block;
+          text-decoration: none
+      }
+
+      .smg-header .app-text-logo i {
+          font-style: normal
+      }
+
+      @media only screen and (max-width: 395px) {
+          .smg-header .app-text-logo i {
+              display: none
+          }
+      }
+
+      .smg-header-body .options,
+      .smg-header-body .smg-menu {
+          display: none
+      }
+
+      .smg-header {
+          margin: 0 auto;
+          max-width: 1340px
+      }
+     </style>
+     <style>
+      /* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+
+body .container {
+  max-width: 1100px;
+}
+
+#filter-buttons button {
+  border-radius: 3px;
+  background: #fff;
+  border-color: transparent;
+}
+
+#filter-buttons button:hover {
+  background: #ddd;
+}
+
+#filter-buttons button.active {
+  color: #fff;
+  background: #60B1FE;
+}
+
+#filterable-cards .card {
+  width: 15rem;
+  border: 2px solid transparent;
+}
+
+#filterable-cards .card.hide {
+  display: none;
+}
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 4s forwards;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 600px) {
+  #filterable-cards {
+    justify-content: center;
+  }
+
+  #filterable-cards .card {
+    width: calc(100% / 2 - 10px);
+  }
+}
+.flex_card{
+  display: flex;
+}
+
+.card_img{
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+  margin-right: 7px;
+}
+
+.card_custom{
+  padding: 15px 8px !important;
+  /* border: 1px dashed white !important; */
+}
+     </style>
+     
+  </head>
+
+  <body>
+    <!-- Header imported -->
+     <!--Header -->
+     <div class="smg-header-body" style="background-color: #60B1FE;">
+      <div class="smg-header">
+          <!--Logo -->
+          <p class="logo">
+              <a target="_blank" href="https://www.shaktipumps.com/" title="Click here to download all the apps for shakti employees">
+              <image src="{{url_for('static',filename='images/new-logo2.png')}}"  width="132px" height="30px">
+                  <strong>Shakti Pumps</strong>    
+              </a>
+          </p>
+          <div class="app-text-logo"><a href="{{url_for('redirect')}}" title="Shakti App Store" target="_self">Shakti Pumps App Store</a></div>
+
+          <!--Ends Logo -->
+          <!--Options -->
+          <div class="options" style="display: block;float: right;width: auto;">
+              <div class="helpdesk-btn" style="display: block;float: left;height: 42px;margin-left: 5px;padding: 0;">
+                  <button class="execute-btn clsTooltipster tooltipstered" data-lang-title-id="25" onclick="showHelpdesk();" style="width: auto;height: auto;transition: all .5s ease;
+                      text-align: center;padding: 4px 5px 4px 5px;background: none;display: block; border: none;
+                      color: white;">
+                      <i style="width: 16px;height: 16px;vertical-align: middle;line-height: 20px;display: block;margin: 0 auto;color: #ffffff;">
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 160 160" style="enable-background: new 0 0 160 160;display: block;margin: 0 auto;color: #ffffff;" xml:space="preserve" width="17px" height="17px">
+                          <path class="support-graphic" d="M143.547,80c0,29.81-22.867,54.355-51.987,57.069c-0.253-1.402-0.577-2.85-1.036-4.393
+                            c-0.094-0.365-1.078-3.704-2.874-7.844c24.086-0.76,43.478-20.54,43.478-44.832S111.735,35.922,87.65,35.186
+                            c1.796-4.187,2.779-7.52,2.874-7.885c0.459-1.543,0.783-2.968,1.036-4.376C120.68,25.64,143.547,50.185,143.547,80L143.547,80z
+                            M18.108,45.768c-0.871,11.089-1.401,22.225-1.608,33.331h-0.047c0,0.3,0.024,0.601,0.024,0.901c0,0.3-0.024,0.595-0.024,0.895H16.5
+                            c0.206,11.136,0.712,22.242,1.608,33.331c2.35,29.056,25.169,48.33,47.547,43.342c0.972-0.206,2.002-0.206,2.927-0.601
+                            c5.424-2.255,9.958-6.484,14.993-9.593c6.395-4.022-7.426-38.137-15.983-33.72c-3.174,1.655-11.919,8.121-15.441,8.604
+                            c-3.127,0.436-5.588-3.728-5.889-7.573c-0.825-10.117-0.088-23.049-0.018-33.79h0.018c0-0.3-0.018-0.618-0.018-0.895
+                            c0-0.3,0.018-0.624,0.018-0.901h-0.018c-0.071-10.741-0.807-23.668,0.018-33.814c0.3-3.816,2.762-7.98,5.889-7.544
+                            c3.522,0.483,12.267,6.949,15.441,8.604c8.557,4.417,22.378-29.721,15.965-33.726c-5.017-3.127-9.552-7.337-14.999-9.593
+                            c-0.901-0.389-1.932-0.389-2.921-0.595C43.277-2.562,20.457,16.742,18.108,45.768L18.108,45.768z M59.448,92.626h19.963l1.06-5.035
+                            h-12.72c0.483-0.624,1.037-1.131,1.655-1.59c0.648-0.46,1.773-1.195,3.427-2.232l2.644-1.608c2.208-1.378,3.869-2.62,4.97-3.728
+                            c1.637-1.678,2.668-3.586,3.127-5.748c0.6-2.832,0.188-5.088-1.284-6.79s-3.728-2.574-6.814-2.574c-3.887,0-6.919,1.472-9.063,4.37
+                            c-1.125,1.543-1.996,3.545-2.62,6.024h5.565c0.418-1.631,0.878-2.85,1.408-3.586c0.895-1.313,2.232-1.955,3.975-1.955
+                            c1.266,0,2.167,0.412,2.673,1.219c0.506,0.83,0.642,1.861,0.341,3.08c-0.3,1.519-1.195,2.903-2.644,4.187
+                            c-0.966,0.807-2.968,2.167-6.007,4.075c-3.492,2.161-5.865,4.21-7.084,6.165C60.779,88.628,59.93,90.536,59.448,92.626
+                            L59.448,92.626z M104.857,81.861h-3.292l3.863-18.197h-6.413L84.54,81.355l-1.078,4.994h11.548l-1.337,6.278h5.612l1.337-6.278
+                            h3.292L104.857,81.861z M88.663,81.861l9.958-12.585l-2.668,12.585H88.663z M88.663,81.861" style="
+                            fill: #ffffff;
+                            ">
+                              </path>
+                          </svg>
+                      </i>
+
+                      <span data-lang-id="25">HelpDesk</span>
+
+                      </button>
+                      </div>
+                      
+          </div>
+          <!--Ends Options -->
+<!-- Home icon start -->
+          <!-- <a href="">
+          
+          <img src="{{url_for('static',filename='logos/icons8-home-50.png')}}" style="width: 3%; margin-left: 17%; margin-top: 2px;" alt="">
+        </a> -->
+      </div>
+
+  <!--Ends Header -->
+
+  <!-- App Description -->
+  <div class="container fade-in" style="margin-top: 100px;">
+    <!-- Images Filter Buttons Section -->
+    <div class="row mt-5" id="filter-buttons" >
+      <div class="col-12" style="align-items: center; margin-left: 40%;">
+        <button class="btn mb-2 me-1 active" data-filter="android" >For Android</button>
+        <button class="btn mb-2 mx-1" data-filter="ios" >For IOS</button>
+      </div>
+    </div>
+    <!-- Filterable Images / Cards Section -->
+    
+    <div class="row px-2 mt-4 gap-3" id="filterable-cards" style="opacity: 0.8;gap: 2.5rem !important;">
+      
+      <!-- For Android -->
+      {% for user in data %}
+      <div class="card p-0 col-md-3 card_custom" data-name="android" id="androidShow" style="background: #f0f8ff00;">
+        <div class="flex_card">
+              <img src="{{url_for('static',filename='images/unnamed.png')}}" alt="img" class="img-fluid card_img">
+          <div class="card-body">
+            <h6 class="card-title" style="color: white;">{{user.HeadingName}}</h6>
+            <p class="card-title" style="color: white;">Version : {{user.CurrentVersion}}</p>
+            <p class="card-title" style="color: white;">Update : {{user.Update}}</p>
+            <form action="/render/{{user.id}}" method="POST">
+              <button class="card-text btn btn-light" style="background-color: #60B1FE;border-color: #f8f9fa00;">Details</button>
+              </form>
+          </div>
+        </div>
+        <!-- <div class="card-body" style="padding: 20px;">
+          
+        </div> -->
+      </div>
+      {% endfor %}
+
+      <!-- For IOS -->
+
+      {% for user in data %}
+      <div class="card p-0 col-md-3 card_custom" data-name="ios" onload="block()" id="blockBox" style="background: #f0f8ff00;">
+        <div class="flex_card">
+              <img src="{{url_for('static',filename='images/unnamed.png')}}" alt="img" class="img-fluid card_img">
+          <div class="card-body">
+            <h6 class="card-title" style="color: white;">123123{{user.HeadingName}}</h6>
+            <form action="/render/{{user.id}}" method="POST">
+              <button class="card-text btn btn-light">Details</button>
+              </form>
+          </div>
+        </div>
+        <!-- <div class="card-body" style="padding: 20px;">
+          
+        </div> -->
+      </div>
+      {% endfor %}
+
+      <!-- <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Pumps Quality</h6>
+          <form action="/render/1" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Gried Tie</h6>
+          <form action="/render/2" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti RMS</h6>
+          <form action="/render/3" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Kususm App</h6>
+          <form action="/render/4" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Employee</h6>
+          <form action="/render/5" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Sales Employee</h6>
+          <form action="/render/6" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Transport</h6>
+          <form action="/render/7" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Vendor App</h6>
+          <form action="/render/8" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti RMS Data Extraction</h6>
+          <form action="/render/9" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      <div class="card p-0" data-name="nature">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Shakti Bill and Commission</h6>
+          <form action="/render/10" method="POST">
+          <button class="card-text" action>Details</button>
+          </form>
+        </div>
+      </div>
+      <div class="card p-0" data-name="people">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Girl</h6>
+          <p class="card-text">Lorem ipsum dolor..</p>
+        </div>
+      </div>
+      <div class="card p-0" data-name="people">
+        <img src="{{url_for('static',filename='images/new-logo2.png')}}" alt="img">
+        <div class="card-body">
+          <h6 class="card-title">Girl</h6>
+          <p class="card-text">Lorem ipsum dolor..</p>
+        </div>
+      </div> -->
+    </div>
+  </div>
+   <!-- App Descriptions ends her -->
+
+
+  <!-- adding bootstrap -->
+
+   
+
+  </script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <script>
+    const filterButtons = document.querySelectorAll("#filter-buttons button");
+    const filterableCards = document.querySelectorAll("#filterable-cards .card");
+    
+    
+    const filterCards = (e) => {
+        document.querySelector("#filter-buttons .active").classList.remove("active");
+        e.target.classList.add("active");
+    
+        filterableCards.forEach(card => {
+           
+            if(card.dataset.name === e.target.dataset.filter || e.target.dataset.filter === "all") {
+                return card.classList.replace("hide", "show");
+            }
+            card.classList.add("hide");
+        });
+    }
+    filterButtons.forEach(button => button.addEventListener("click", filterCards));
+    </script>
+    <script>
+      window.onload = function() {
+      const filterableCards = document.querySelectorAll("#filterable-cards .card");
+
+      // Function to hide cards with data-name='ios' on page load
+      const hideIosCards = () => {
+          filterableCards.forEach(card => {
+              if (card.dataset.name === 'ios') {
+                  card.classList.add("hide");
+              }
+          });
+      }
+
+      // Hide cards with data-name='ios' on page load
+      hideIosCards();
+      };
+      </script>
+  </body>
+
+</html>
